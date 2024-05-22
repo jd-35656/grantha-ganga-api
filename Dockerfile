@@ -28,6 +28,8 @@ EXPOSE 8000
 USER appuser
 
 # Run the application.
-CMD ["python", \
-    "-m", \
-    "src.main.app"]
+CMD ["gunicorn", \
+    "-w", "1", \
+    "--reload", \
+    "-b", "0.0.0.0:8000", \
+    "src.wsgi:application"]
