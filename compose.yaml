@@ -1,6 +1,20 @@
 services:
-  server:
+  api:
+    image: grantha-ganga-api:latest
     build:
       context: .
+    container_name: grantha-ganga-app
+    env_file:
+      - .env
     ports:
       - 8000:8000
+    develop:
+      watch:
+        - path: .
+          action: sync
+          target: /app/
+          ignore:
+            - Pipfile
+            - Pipfile.lock
+        - path: Pipfile
+          action: rebuild
