@@ -29,4 +29,5 @@ USER appuser
 
 # Run the application.
 CMD ["python", \
-    "app.py"]
+    "-m", \
+    "src.main.app"]
