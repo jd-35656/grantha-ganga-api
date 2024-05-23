@@ -1,5 +1,8 @@
 """Entry point for flask app"""
 
-from src.main.app import app
+from src.main.app import create_app
+from src.main.config import Config
 
-application = app
+config = Config()
+
+application = create_app(config=config)

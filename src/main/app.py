@@ -2,20 +2,15 @@
 Main flask app definition
 """
 
-from typing import Dict
-
 from flask import Flask
 
-app = Flask(__name__)
+from src.main.config import Config
+from src.main.routes import routes
 
 
-@app.route("/")
-def index() -> Dict:
-    """Demo
-
-    Returns:
-        Dict: demo
-    """
-    return {
-        "health": "working",
-    }
+def create_app(config: Config) -> Flask:
+    """Creates flask app"""
+    app = Flask("grantha-ganga-api")
+    app.config.from_object(config)
+    routes(app)
+    return app
